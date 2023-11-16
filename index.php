@@ -1,3 +1,9 @@
+<?php
+    // $month; // récupérer le mois chisit par l'utilisateur
+    // $years; // récupérer l'année chisie par l'utilisateur 
+    // $NbeDaysMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year); // connaitre le nombre de jours dans un mois
+    // var_dump($NbeDaysMonth);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,14 +12,16 @@
     <title>Projet PHP calendrier</title>
     <!-- my style -->
     <link rel="stylesheet" href="./public/assets/css/style.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Prata&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <main>
-    <!-- ---------------------------- -->
-    <!---------- Formulaire : ---------->
-    <!-- ---------------------------- -->
-    <section id="form">
+    <!-- ---------------------- -->
+    <!---------- Form : ---------->
+    <!-- ---------------------- -->
+    <section id="section__form">
         <form method="get">
             <label for="months">Choisir le mois à afficher :</label>
             <select name="months" id="months">
@@ -65,16 +73,16 @@
                 <option value="value1997">1997</option>
                 <option value="value1998">1998</option>
                 <option value="value1999">1999</option>
-                <option value="value2000">20000</option>
-                <option value="value2001">20001</option>
-                <option value="value2002">20002</option>
-                <option value="value2003">20003</option>
-                <option value="value2004">20004</option>
-                <option value="value2005">20005</option>
-                <option value="value2006">20006</option>
-                <option value="value2007">20007</option>
-                <option value="value2008">20008</option>
-                <option value="value2009">20009</option>
+                <option value="value2000">2000</option>
+                <option value="value2001">2001</option>
+                <option value="value2002">2002</option>
+                <option value="value2003">2003</option>
+                <option value="value2004">2004</option>
+                <option value="value2005">2005</option>
+                <option value="value2006">2006</option>
+                <option value="value2007">2007</option>
+                <option value="value2008">2008</option>
+                <option value="value2009">2009</option>
                 <option value="value2010">2010</option>
                 <option value="value2011">2011</option>
                 <option value="value2012">2012</option>
@@ -144,13 +152,25 @@
     <!-- ---------------------------------- -->
     <!---------- Calendar's title : ---------->
     <!-- ---------------------------------- -->
-    <section>
-        <h2>Janvier 2024</h2>
+    <section id="section__title">
+        <div id="section__title__container--images1">
+            <img id="section__title__container--images1--flower1" src="./public/assets/img/fleur2.png" alt="">
+            <img id="section__title__container--images1--flower2" src="./public/assets/img/fleur1.png" alt="">
+            <img id="section__title__container--images1--flower3" src="./public/assets/img/fleurMilieu.png" alt="">
+        </div>
+        <div id="section__title__container--h2">
+            <h2><span>Janvier</span><br> <span id="h2__year"></span>2024</h2>
+        </div>
+        <div id="section__title__container--images2">
+            <img id="section__title__container--images2--flower1" src="./public/assets/img/fleurMilieu.png" alt="">
+            <img id="section__title__container--images2--flower2" src="./public/assets/img/fleur1.png" alt="">
+            <img id="section__title__container--images2--flower3" src="./public/assets/img/fleur2.png" alt="">
+        </div>
     </section>
     <!-- -------------------------- -->
     <!---------- Calendar : ---------->
     <!-- -------------------------- -->
-    <section>
+    <section id="section__calendar">
         <!-- Calendar's container -->
         <div id="calendar__container">
             <!-- days' name container -->
@@ -202,6 +222,13 @@
                 <div class="days__blocks">33</div>
                 <div class="days__blocks">34</div>
                 <div class="days__blocks">35</div>
+                <div class="days__blocks">36</div>
+                <div class="days__blocks">37</div>
+                <div class="days__blocks">38</div>
+                <div class="days__blocks">39</div>
+                <div class="days__blocks">40</div>
+                <div class="days__blocks">41</div>
+                <div class="days__blocks">42</div>
             </div>
         </div>
     </section>
