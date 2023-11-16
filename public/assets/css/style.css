@@ -1,25 +1,27 @@
 #calendar__container{
-    background-color: red;
+    /* background-color: red; */
     height: 70vh;
-    width: 80vw;
+    width: 81vw;
 }
 .days-name__container{
-    background-color: aqua;
+    /* background-color: aqua; */
     height: 5vh;
     display: flex;
 }
-.days-name{
-    background-color: grey;
+.days-name__blocks{
+    /* background-color: grey; */
     height: 100%;
     width: 13vw;
 }
 .days__container{
-    background-color: blue;
+    /* background-color: blue; */
     height: calc(70vh - 5vh);
     display: flex;
+    flex-wrap: wrap;
 }
-.days{
-    background-color: aqua;
-    height: calc(65vh / 5vh);
-    width: 13vw;
+.days__blocks{
+    /* background-color: aqua; */
+    height: calc(65vh / 5);
+    width: calc(80vw / 7);
+    border: 1px solid black;
 }

@@ -156,52 +156,52 @@
             <!-- days' name container -->
             <div class="days-name__container">
                 <!-- days -->
-                <div class="days-name">Lundi</div>
-                <div class="days-name">Mardi</div>
-                <div class="days-name">Mercredi</div>
-                <div class="days-name">Jeudi</div>
-                <div class="days-name">Vendredi</div>
-                <div class="days-name">Samedi</div>
-                <div class="days-name">Dimanche</div>
+                <div class="days-name__blocks">Lundi</div>
+                <div class="days-name__blocks">Mardi</div>
+                <div class="days-name__blocks">Mercredi</div>
+                <div class="days-name__blocks">Jeudi</div>
+                <div class="days-name__blocks">Vendredi</div>
+                <div class="days-name__blocks">Samedi</div>
+                <div class="days-name__blocks">Dimanche</div>
             </div>
             <!-- days container -->
             <div class="days__container">
                 <!-- days -->
-                <div class="days">1</div>
-                <div class="days">2</div>
-                <div class="days">3</div>
-                <div class="days">4</div>
-                <div class="days">5</div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
-                <div class="days"></div>
+                <div class="days__blocks">1</div>
+                <div class="days__blocks">2</div>
+                <div class="days__blocks">3</div>
+                <div class="days__blocks">4</div>
+                <div class="days__blocks">5</div>
+                <div class="days__blocks">6</div>
+                <div class="days__blocks">7</div>
+                <div class="days__blocks">8</div>
+                <div class="days__blocks">9</div>
+                <div class="days__blocks">10</div>
+                <div class="days__blocks">11</div>
+                <div class="days__blocks">12</div>
+                <div class="days__blocks">13</div>
+                <div class="days__blocks">14</div>
+                <div class="days__blocks">15</div>
+                <div class="days__blocks">16</div>
+                <div class="days__blocks">17</div>
+                <div class="days__blocks">18</div>
+                <div class="days__blocks">19</div>
+                <div class="days__blocks">20</div>
+                <div class="days__blocks">21</div>
+                <div class="days__blocks">22</div>
+                <div class="days__blocks">23</div>
+                <div class="days__blocks">24</div>
+                <div class="days__blocks">25</div>
+                <div class="days__blocks">26</div>
+                <div class="days__blocks">27</div>
+                <div class="days__blocks">28</div>
+                <div class="days__blocks">29</div>
+                <div class="days__blocks">30</div>
+                <div class="days__blocks">31</div>
+                <div class="days__blocks">32</div>
+                <div class="days__blocks">33</div>
+                <div class="days__blocks">34</div>
+                <div class="days__blocks">35</div>
             </div>
         </div>
     </section>
