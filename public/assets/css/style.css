@@ -1,6 +1,8 @@
 /* ! Global settings */
 body{
     /*overflow-y: hidden;*/ /* to hide scroll bar*/
+    overflow-x: hidden;
+    background-image: repeating-radial-gradient(circle at center center, transparent 0px, transparent 13px,rgba(0,0,0,0.03) 13px, rgba(0,0,0,0.03) 24px,transparent 24px, transparent 62px,rgba(0,0,0,0.03) 62px, rgba(0,0,0,0.03) 96px),repeating-radial-gradient(circle at center center, rgb(255,255,255) 0px, rgb(255,255,255) 14px,rgb(255,255,255) 14px, rgb(255,255,255) 18px,rgb(255,255,255) 18px, rgb(255,255,255) 28px,rgb(255,255,255) 28px, rgb(255,255,255) 32px); background-size: 21px 21px;
 }
 *{
     font-family: 'Prata', serif;
@@ -49,6 +51,7 @@ input{
     height: 100%;
 }
 h2{
+    z-index: 25;
     line-height: 85%;
     padding-top: 2.3em;
 }
@@ -58,7 +61,12 @@ h2 span{
     font-size: 6vw;
 }
 #h2__year{
-    padding-left: 2.1em;
+    padding-left: 8vw;
+    font-family: 'Prata', serif;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    padding-top: 4.5vh;
 }
 #section__title__container--images1{
     /* background-color: blue; */
@@ -115,11 +123,12 @@ h2 span{
 #section__calendar{
     display: flex;
     justify-content: center;
+    padding-top: 5vh;
 }
 #calendar__container{
     /* background-color: red; */
-    height: 70vh;
-    width: 81vw;
+    height: 60vh;
+    width: 61vw;
 }
 .days-name__container{
     /* background-color: aqua; */
@@ -135,14 +144,14 @@ h2 span{
 }
 .days__container{
     /* background-color: blue; */
-    height: calc(70vh - 5vh);
+    height: calc(60vh - 5vh);
     display: flex;
     flex-wrap: wrap;
 }
 .days__blocks{
     /* background-color: aqua; */
-    height: calc(65vh / 6);
-    width: calc(80vw / 7);
+    height: calc(55vh / 6);
+    width: calc(60vw / 7);
     border: 1px solid black;
 }
 
