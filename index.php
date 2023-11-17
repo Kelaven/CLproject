@@ -1,20 +1,21 @@
 <?php
     // doc pour la fonction date() :  https://www.pierre-giraud.com/php-mysql-apprendre-coder-cours/obtenir-formater-date/
-    // ! Récupérer le mois et l'année sélectionnés par l'utilisateur
+    
+    // ! Récupérer le mois et l'année sélectionnés par l'utilisateur ou afficher la date en cours par défaut :
     if (!empty($_GET['months'])) {
         $month = $_GET['months']; // récupérer le mois choisi par l'utilisateur (en int car la value est un entier dans le form HTML)
     } else {
-        // ! afficher un mois si l'utilisateur n'a rien choisi
+        // * afficher un mois si l'utilisateur n'a rien choisi
         $month = date('n'); // mois en cours
     }
-    if (!empty($_GET['years'])) {
+    if (!empty($_GET['years'])) { // il n'est pas dérangeant d'avoir deux conditions différentes, cela reste optimisé
         $year = $_GET['years']; // récupérer l'année choisie par l'utilisateur
     } else {
-        // ! afficher une année si l'utilisateur n'a rien choisi
+        // * afficher une année si l'utilisateur n'a rien choisi
         $year = date('Y'); // année en cours
     }
     
-    // ! Avoir $month en string français pour l'affichage dans le title
+    // ! Avoir $month en string français pour l'affichage dans le title :
     switch ($month) {
         case 1 :
             $monthFrench = 'Janvier';
@@ -57,21 +58,21 @@
             break;
     }
 
-    // ! Variable pour récupérer le nombre de jours dans le mois et l'année sélectionnés par l'utilisateur
+    // ! Variables contenant les fonctions de date à utiliser : 
+    // * pour récupérer le nombre de jours dans le mois et l'année sélectionnés par l'utilisateur
     $NbeDaysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year); // connaitre le nombre de jours dans un mois (la Variable ne reconnait que les integer)
     // var_dump($NbeDaysInMonth);
-    // ! Variable pour récupérer le premier jour du mois sélectionné
-    // $monthFirstDay = date('d', mktime(0, 0, 0, $month, 1)); // mktime pour obtenir le timestamp. 0 pour l'heure, 0 pour les mins, 0 pour les sec, $month pour le mois sélectionné par l'utilisateur et enfin 1 pour le (premier) jour
+    // * pour récupérer le premier jour du mois sélectionné
     // var_dump($monthFirstDay);
     $monthFirstDayInWeek = date('N', mktime(0, 0, 0, $month, 1, $year)); // year est important pour cela fonctionne pour toutes les années y compris les bissextiles
     // var_dump($monthFirstDayInWeek);
-    // ! Variable pour récupérer le dernier jour du mois sélectionné
+    // * pour récupérer le dernier jour du mois sélectionné
     $monthLastDay = date('t', mktime(0, 0, 0, $month, 1, $year)); // le format 't' renvoie le nombre de jours dans le mois spécifié. Donc, dans ce cas, il renverra le dernier jour du mois.
     // var_dump($monthLastDay);
 
 
 
-    // ! Afficher les éléments courants (griser les éléments hors du mois courant)
+    // ! Afficher les éléments courants
     $displayDaysInCalendar=[]; // initialiser un tableau à vide pour isoler les cases un peu comme un dataset
     $counter = 1; // il fallait sortir ce counter de la boucle pour pouvoir après-coup l'incrémenter correctement
     for ($i=0; $i < 42 ; $i++) { // boucle qui était à la base dans le HTML pour créer les cases, on va parcourir chacune d'entre-elles et on va remplir leur variable $displayDaysInCalendar avec $displayDaysInCalendar[] pour isoler chacune d'entre-elles
@@ -81,7 +82,6 @@
             $displayDaysInCalendar[] = $counter++;
         }
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -102,9 +102,28 @@
     <!-- ---------------------- -->
     <section id="section__form">
         <form method="get">
+            <!-- ! Première partie du form : -->
             <label for="months">Choisir le mois à afficher :</label>
             <select name="months" id="months" required>
                 <option value="">--Veuillez choisir un mois--</option>
+                <?php $monthsArray = [
+                        1 => 'Janvier', 
+                        2 => 'Février', 
+                        3 => 'Mars', 
+                        4 => 'Avril', 
+                        5 => 'Mai', 
+                        6 => 'Juin', 
+                        7 => 'Juillet', 
+                        8 => 'Août', 
+                        9 => 'Septembre', 
+                        10 => 'Octobre', 
+                        11 => 'Novembre', 
+                        12 => 'Décembre', 
+                    ]; ?>
+                <?php foreach ($monthsArray as $key => $value) { ?>
+                        <option value="<?= $key ?>"><?= $value ?></option>
+                <?php } ?>
+                <!-- Même chose qu'au dessus mais en HTML :
                 <option value="1">Janvier</option>
                 <option value="2">Février</option>
                 <option value="3">Mars</option>
@@ -116,8 +135,10 @@
                 <option value="9">Septembre</option>
                 <option value="10">Octobre</option>
                 <option value="11">Novembre</option>
-                <option value="12">Décembre</option>
+                <option value="12">Décembre</option> 
+                -->
             </select>
+            <!-- ! Deuxième partie du form : -->
             <label for="years">Choisir l'année à afficher :</label>
             <select name="years" id="years" required>
                 <option value="">--Veuillez choisir une année--</option>
@@ -169,24 +190,16 @@
             <div class="days__container">
                 <!-- days -->
                 <?php
-                    // for ($i=0; $i < 42 ; $i++) { ?>
-                        <!-- <div class="days__blocks"> -->
-                            <?php
-                                foreach ($displayDaysInCalendar as $value) {?>  
-                                <div class="days__blocks">
-                                    <?php
-                                    // echo $value;
-                                    if (empty($value)) { ?>
-                                        <div class="days__container--empty"></div>
-                                    <?php } else {
-                                        echo $value;
-                                    ?>
-                                <?php } ?>
-                                </div> 
-                                <?php } ?>
-                            
-                        <!-- </div> -->
-                <?php //} ?>
+                    foreach ($displayDaysInCalendar as $value) {?>  <!-- en reprenant la ligne 75 -->
+                    <div class="days__blocks">
+                        <?php
+                        if (empty($value)) { ?>
+                            <div class="days__container--empty"></div>  <!-- griser les éléments hors du mois courant -->
+                        <?php } else {
+                            echo $value;
+                        } ?>
+                    </div> 
+                    <?php } ?>
             </div>
         </div>
     </section>
