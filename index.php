@@ -1,13 +1,19 @@
 <?php
     // doc pour la fonction date() :  https://www.pierre-giraud.com/php-mysql-apprendre-coder-cours/obtenir-formater-date/
     // ! Récupérer le mois et l'année sélectionnés par l'utilisateur
-    @$month = $_GET['months']; // récupérer le mois choisi par l'utilisateur (en int car la value est un entier dans le form HTML)
-    @$year = $_GET['years']; // récupérer l'année choisie par l'utilisateur
-    // ! afficher un mois et une année si l'utilisateur n'a rien choisi, c'est à dire au premier chargement de la page
-    if (empty($month) && empty($year)) {
+    if (!empty($_GET['months'])) {
+        $month = $_GET['months']; // récupérer le mois choisi par l'utilisateur (en int car la value est un entier dans le form HTML)
+    } else {
+        // ! afficher un mois si l'utilisateur n'a rien choisi
         $month = date('n'); // mois en cours
+    }
+    if (!empty($_GET['years'])) {
+        $year = $_GET['years']; // récupérer l'année choisie par l'utilisateur
+    } else {
+        // ! afficher une année si l'utilisateur n'a rien choisi
         $year = date('Y'); // année en cours
     }
+    
     // ! Avoir $month en string français pour l'affichage dans le title
     switch ($month) {
         case 1 :
@@ -51,35 +57,30 @@
             break;
     }
 
-
     // ! Variable pour récupérer le nombre de jours dans le mois et l'année sélectionnés par l'utilisateur
     $NbeDaysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year); // connaitre le nombre de jours dans un mois (la Variable ne reconnait que les integer)
-    var_dump($NbeDaysInMonth);
+    // var_dump($NbeDaysInMonth);
     // ! Variable pour récupérer le premier jour du mois sélectionné
     // $monthFirstDay = date('d', mktime(0, 0, 0, $month, 1)); // mktime pour obtenir le timestamp. 0 pour l'heure, 0 pour les mins, 0 pour les sec, $month pour le mois sélectionné par l'utilisateur et enfin 1 pour le (premier) jour
     // var_dump($monthFirstDay);
-    $monthFirstDayInWeek = date('N', mktime(0, 0, 0, $month, 1, $year));
-    var_dump($monthFirstDayInWeek);
+    $monthFirstDayInWeek = date('N', mktime(0, 0, 0, $month, 1, $year)); // year est important pour cela fonctionne pour toutes les années y compris les bissextiles
+    // var_dump($monthFirstDayInWeek);
     // ! Variable pour récupérer le dernier jour du mois sélectionné
     $monthLastDay = date('t', mktime(0, 0, 0, $month, 1, $year)); // le format 't' renvoie le nombre de jours dans le mois spécifié. Donc, dans ce cas, il renverra le dernier jour du mois.
-    var_dump($monthLastDay);
+    // var_dump($monthLastDay);
 
 
 
-    // ? Fonction pour afficher les éléments courants (griser les éléments hors du mois courant)
-
+    // ! Afficher les éléments courants (griser les éléments hors du mois courant)
     $displayDaysInCalendar=[]; // initialiser un tableau à vide pour isoler les cases un peu comme un dataset
-
+    $counter = 1; // il fallait sortir ce counter de la boucle pour pouvoir après-coup l'incrémenter correctement
     for ($i=0; $i < 42 ; $i++) { // boucle qui était à la base dans le HTML pour créer les cases, on va parcourir chacune d'entre-elles et on va remplir leur variable $displayDaysInCalendar avec $displayDaysInCalendar[] pour isoler chacune d'entre-elles
         if (($i < $monthFirstDayInWeek -1) || ($i > (($monthFirstDayInWeek + $monthLastDay))-2)) { // -1 car on commence à 0
             $displayDaysInCalendar[] = '';
-        }   else {
-            $displayDaysInCalendar[] = 'case pleine';
+        } else {
+            $displayDaysInCalendar[] = $counter++;
         }
     }
-var_dump($displayDaysInCalendar);
-
-
 
 ?>
 <!DOCTYPE html>
@@ -172,7 +173,16 @@ var_dump($displayDaysInCalendar);
                         <!-- <div class="days__blocks"> -->
                             <?php
                                 foreach ($displayDaysInCalendar as $value) {?>  
-                                <div class="days__blocks"><?php echo $value ?></div> 
+                                <div class="days__blocks">
+                                    <?php
+                                    // echo $value;
+                                    if (empty($value)) { ?>
+                                        <div class="days__container--empty"></div>
+                                    <?php } else {
+                                        echo $value;
+                                    ?>
+                                <?php } ?>
+                                </div> 
                                 <?php } ?>
                             
                         <!-- </div> -->

@@ -141,6 +141,7 @@ h2 span{
     width: 13vw;
     display: flex;
     align-items: end;
+    padding-left: 0.5vw;
 }
 .days__container{
     /* background-color: blue; */
@@ -148,10 +149,19 @@ h2 span{
     display: flex;
     flex-wrap: wrap;
 }
+.days__container--empty{
+    background-color: #8E9291;
+    height: 100%;
+    width: 100%;
+}
 .days__blocks{
     /* background-color: aqua; */
     height: calc(55vh / 6);
     width: calc(60vw / 7);
     border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2vw;
 }
 
