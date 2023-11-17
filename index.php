@@ -10,40 +10,40 @@
     }
     // ! Avoir $month en string français pour l'affichage dans le title
     switch ($month) {
-        case $month == 1 :
+        case 1 :
             $monthFrench = 'Janvier';
             break;
-        case $month == 2 :
+        case 2 :
             $monthFrench = 'Février';
             break;
-        case $month == 3 :
+        case 3 :
             $monthFrench = 'Mars';
             break;
-        case $month == 4 :
+        case 4 :
             $monthFrench = 'Avril';
             break;
-        case $month == 5 :
+        case 5 :
             $monthFrench = 'Mai';
             break;
-        case $month == 6 :
+        case 6 :
             $monthFrench = 'Juin';
             break;
-        case $month == 7 :
+        case 7 :
             $monthFrench = 'Juillet';
             break;
-        case $month == 8 :
+        case 8 :
             $monthFrench = 'Août';
             break;
-        case $month == 9 :
+        case 9 :
             $monthFrench = 'Septembre';
             break;
-        case $month == 10 :
+        case 10 :
             $monthFrench = 'Octobre';
             break;
-        case $month == 11 :
+        case 11 :
             $monthFrench = 'Novembre';
             break;
-        case $month == 12 :
+        case 12 :
             $monthFrench = 'Décembre';
             break;
         default:
@@ -52,23 +52,35 @@
     }
 
 
-    // ! Fonction pour récupérer le nombre de jours dans le mois et l'année sélectionnés par l'utilisateur
-    $NbeDaysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year); // connaitre le nombre de jours dans un mois (la fonction ne reconnait que les integer c'est pourquoi on a utilisé date() qui elle-même utilise strtotime() qui elle-même reprend le choix de l'utilisateur)
-    // var_dump($NbeDaysInMonth);
-    // ! Fonction pour récupérer le premier jour du mois sélectionné
-    $monthFirstDay = date('d', mktime(0, 0, 0, $month, 1)); // mktime pour obtenir le timestamp. 0 pour l'heure, 0 pour les mins, 0 pour les sec, $month pour le mois sélectionné par l'utilisateur et enfin 1 pour le (premier) jour
-    var_dump($monthFirstDay);
-    // ! Fonction pour récupérer le dernier jour du mois sélectionné
-    $monthLastDay = date('t', mktime(0, 0, 0, $month)); // le format 't' renvoie le nombre de jours dans le mois spécifié. Donc, dans ce cas, il renverra le dernier jour du mois.
+    // ! Variable pour récupérer le nombre de jours dans le mois et l'année sélectionnés par l'utilisateur
+    $NbeDaysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year); // connaitre le nombre de jours dans un mois (la Variable ne reconnait que les integer)
+    var_dump($NbeDaysInMonth);
+    // ! Variable pour récupérer le premier jour du mois sélectionné
+    // $monthFirstDay = date('d', mktime(0, 0, 0, $month, 1)); // mktime pour obtenir le timestamp. 0 pour l'heure, 0 pour les mins, 0 pour les sec, $month pour le mois sélectionné par l'utilisateur et enfin 1 pour le (premier) jour
+    // var_dump($monthFirstDay);
+    $monthFirstDayInWeek = date('N', mktime(0, 0, 0, $month, 1, $year));
+    var_dump($monthFirstDayInWeek);
+    // ! Variable pour récupérer le dernier jour du mois sélectionné
+    $monthLastDay = date('t', mktime(0, 0, 0, $month, 1, $year)); // le format 't' renvoie le nombre de jours dans le mois spécifié. Donc, dans ce cas, il renverra le dernier jour du mois.
     var_dump($monthLastDay);
-    // ! Fonction pour récupérer le nombre de semaines du mois sélectionné
-    // $daysInAWeek = date('N', mktime(0, 0, 0, $month));
-    // $result = ($daysInAWeek + $monthLastDay) / 7;
-    // $result = $monthLastDay / 7;
-    // var_dump($result);
-    // $NbeWeeksInMonth = date('N', mktime(0, 0, 0,($monthLastDay - $monthFirstDay)+$monthLastDay));
 
-    // var_dump($NbeWeeksInMonth);
+
+
+    // ? Fonction pour afficher les éléments courants (griser les éléments hors du mois courant)
+
+    $displayDaysInCalendar=[]; // initialiser un tableau à vide pour isoler les cases un peu comme un dataset
+
+    for ($i=0; $i < 42 ; $i++) { // boucle qui était à la base dans le HTML pour créer les cases, on va parcourir chacune d'entre-elles et on va remplir leur variable $displayDaysInCalendar avec $displayDaysInCalendar[] pour isoler chacune d'entre-elles
+        if (($i < $monthFirstDayInWeek -1) || ($i > (($monthFirstDayInWeek + $monthLastDay))-2)) { // -1 car on commence à 0
+            $displayDaysInCalendar[] = '';
+        }   else {
+            $displayDaysInCalendar[] = 'case pleine';
+        }
+    }
+var_dump($displayDaysInCalendar);
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -107,109 +119,11 @@
             </select>
             <label for="years">Choisir l'année à afficher :</label>
             <select name="years" id="years" required>
-                <!-- option.value$@1970*100 raccourci EMMET -->
                 <option value="">--Veuillez choisir une année--</option>
-                <option value="1970">1970</option>
-                <option value="1971">1971</option>
-                <option value="1972">1972</option>
-                <option value="1973">1973</option>
-                <option value="1974">1974</option>
-                <option value="1975">1975</option>
-                <option value="1976">1976</option>
-                <option value="1977">1977</option>
-                <option value="1978">1978</option>
-                <option value="1979">1979</option>
-                <option value="1980">1980</option>
-                <option value="1981">1981</option>
-                <option value="1982">1982</option>
-                <option value="1983">1983</option>
-                <option value="1984">1984</option>
-                <option value="1985">1985</option>
-                <option value="1986">1986</option>
-                <option value="1987">1987</option>
-                <option value="1988">1988</option>
-                <option value="1989">1989</option>
-                <option value="1990">1990</option>
-                <option value="1991">1991</option>
-                <option value="1992">1992</option>
-                <option value="1993">1993</option>
-                <option value="1994">1994</option>
-                <option value="1995">1995</option>
-                <option value="1996">1996</option>
-                <option value="1997">1997</option>
-                <option value="1998">1998</option>
-                <option value="1999">1999</option>
-                <option value="2000">2000</option>
-                <option value="2001">2001</option>
-                <option value="2002">2002</option>
-                <option value="2003">2003</option>
-                <option value="2004">2004</option>
-                <option value="2005">2005</option>
-                <option value="2006">2006</option>
-                <option value="2007">2007</option>
-                <option value="2008">2008</option>
-                <option value="2009">2009</option>
-                <option value="2010">2010</option>
-                <option value="2011">2011</option>
-                <option value="2012">2012</option>
-                <option value="2013">2013</option>
-                <option value="2014">2014</option>
-                <option value="2015">2015</option>
-                <option value="2016">2016</option>
-                <option value="2017">2017</option>
-                <option value="2018">2018</option>
-                <option value="2019">2019</option>
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-                <option value="2024">2024</option>
-                <option value="2025">2025</option>
-                <option value="2026">2026</option>
-                <option value="2027">2027</option>
-                <option value="2028">2028</option>
-                <option value="2029">2029</option>
-                <option value="2030">2030</option>
-                <option value="2031">2031</option>
-                <option value="2032">2032</option>
-                <option value="2033">2033</option>
-                <option value="2034">2034</option>
-                <option value="2035">2035</option>
-                <option value="2036">2036</option>
-                <option value="2037">2037</option>
-                <option value="2038">2038</option>
-                <option value="2039">2039</option>
-                <option value="2040">2040</option>
-                <option value="2041">2041</option>
-                <option value="2042">2042</option>
-                <option value="2043">2043</option>
-                <option value="2044">2044</option>
-                <option value="2045">2045</option>
-                <option value="2046">2046</option>
-                <option value="2047">2047</option>
-                <option value="2048">2048</option>
-                <option value="2049">2049</option>
-                <option value="2050">2050</option>
-                <option value="2051">2051</option>
-                <option value="2052">2052</option>
-                <option value="2053">2053</option>
-                <option value="2054">2054</option>
-                <option value="2056">2056</option>
-                <option value="2055">2055</option>
-                <option value="2058">2058</option>
-                <option value="2057">2057</option>
-                <option value="2060">2060</option>
-                <option value="2059">2059</option>
-                <option value="2062">2062</option>
-                <option value="2061">2061</option>
-                <option value="2064">2064</option>
-                <option value="2063">2063</option>
-                <option value="2066">2066</option>
-                <option value="2065">2065</option>
-                <option value="2068">2068</option>
-                <option value="2067">2067</option>
-                <option value="2070">2070</option>
-                <option value="2069">2069</option>
+                <?php
+                for ($i=1970; $i < 2071 ; $i++) { ?>
+                    <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                <?php } ?>
             </select>
             <input type="submit" value="Valider">
         </form>
@@ -253,48 +167,16 @@
             <!-- days container -->
             <div class="days__container">
                 <!-- days -->
-                <div class="days__blocks">1</div>
-                <div class="days__blocks">2</div>
-                <div class="days__blocks">3</div>
-                <div class="days__blocks">4</div>
-                <div class="days__blocks">5</div>
-                <div class="days__blocks">6</div>
-                <div class="days__blocks">7</div>
-                <div class="days__blocks">8</div>
-                <div class="days__blocks">9</div>
-                <div class="days__blocks">10</div>
-                <div class="days__blocks">11</div>
-                <div class="days__blocks">12</div>
-                <div class="days__blocks">13</div>
-                <div class="days__blocks">14</div>
-                <div class="days__blocks">15</div>
-                <div class="days__blocks">16</div>
-                <div class="days__blocks">17</div>
-                <div class="days__blocks">18</div>
-                <div class="days__blocks">19</div>
-                <div class="days__blocks">20</div>
-                <div class="days__blocks">21</div>
-                <div class="days__blocks">22</div>
-                <div class="days__blocks">23</div>
-                <div class="days__blocks">24</div>
-                <div class="days__blocks">25</div>
-                <div class="days__blocks">26</div>
-                <div class="days__blocks">27</div>
-                <div class="days__blocks">28</div>
-                <div class="days__blocks">29</div>
-                <div class="days__blocks">30</div>
-                <div class="days__blocks">31</div>
-                <div class="days__blocks">32</div>
-                <div class="days__blocks">33</div>
-                <div class="days__blocks">34</div>
-                <div class="days__blocks">35</div>
-                <div class="days__blocks">36</div>
-                <div class="days__blocks">37</div>
-                <div class="days__blocks">38</div>
-                <div class="days__blocks">39</div>
-                <div class="days__blocks">40</div>
-                <div class="days__blocks">41</div>
-                <div class="days__blocks">42</div>
+                <?php
+                    // for ($i=0; $i < 42 ; $i++) { ?>
+                        <!-- <div class="days__blocks"> -->
+                            <?php
+                                foreach ($displayDaysInCalendar as $value) {?>  
+                                <div class="days__blocks"><?php echo $value ?></div> 
+                                <?php } ?>
+                            
+                        <!-- </div> -->
+                <?php //} ?>
             </div>
         </div>
     </section>
