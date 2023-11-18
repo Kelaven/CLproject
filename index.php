@@ -204,15 +204,7 @@
         </div>
     </section>
 
-
-
-
-
 </main>
-
-
-
-
 
 
     <!-- my script -->

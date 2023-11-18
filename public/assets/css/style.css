@@ -1,4 +1,8 @@
 /* ! Global settings */
+:root{ /* permet de cibler la racine du document, c'est à dire l'élément HTML. Il est utilisé pour définir des variables CSS personnalisées. */
+    --responsive: calc(0.10 * 1vmin); /* je définis une variable "--responsive" avec une valeur calculée. */
+    /* 1vmin représente 1% du côté le plus petit de la fenêtre (soit la hauteur la plus petite de la fenêtre). */
+}
 body{
     /*overflow-y: hidden;*/ /* to hide scroll bar*/
     overflow-x: hidden;
@@ -41,7 +45,7 @@ input{
         height: 15vh;
         display: flex;
         align-items: center;
-        padding-left: 4em;
+        /* background-color: red; */
     }
     select{
         display: flex;
@@ -98,17 +102,20 @@ h2 span{
     transform: translate(0%, -8%);
 }
 #section__title__container--images1--flower1{
-    height: 22vh;
+    /* je définis la largeur de l'img en multipliant 270px (sa taille) par la valeur de la variable définie plus haut 
+    (ce qui fait 270 * 0,9) => la taille s'adapte donc au côté le plus petit. Donc dès qu'on passe en mode portrait 
+    (quand la hauteur de la fenêtre devient plus grande que la largeur) l'img s'adapte au côté le plus petit. */
+    width: calc(270 * var(--responsive));
     z-index: 10;
     padding-top: 2vh;
 }
 #section__title__container--images1--flower2{
     left: 4%;
-    height: 30vh !important;
+    width: calc(430 * var(--responsive));
     z-index: 5;
 }
 #section__title__container--images1--flower3{
-    height: 20vh;
+    width: calc(480 * var(--responsive));
     left: 18%;
     padding-top: 3vh;
     z-index: 10;
@@ -121,23 +128,70 @@ h2 span{
 #section__title__container--images2 img{
     position: absolute;
     transform: translate(-30%, -4%);
+    /* background-color: grey; */
 }
 #section__title__container--images2--flower1{
-    height: 20vh;
+    width: calc(480 * var(--responsive));
     z-index: 10;
     padding-top: 2vh;
 }
 #section__title__container--images2--flower2{
-    height: 30vh;
+    width: calc(430 * var(--responsive));
     z-index: 5;
     padding-bottom: 30vh;
     left: 80%;
 }
 #section__title__container--images2--flower3{
-    height: 22vh;
+    width: calc(270 * var(--responsive));
     z-index: 10;
     padding-top: 2vh;
     left: 91%;
+}
+@media screen and (max-width : 430px) {
+    #section__title{
+        /* width: 95vw; */
+        height: 8vh;
+        padding-top: 15px;
+        /* background-color: red; */
+        /* width: 100vw; */
+    }
+    #section__title__container--images1{
+        /* background-color: #8E9291; */
+        /* width: 50%; */
+    }
+    #section__title__container--images1--flower1{
+        width: calc(120 * var(--responsive));
+    }
+    #section__title__container--images1--flower2{
+        width: calc(230 * var(--responsive));
+    }
+    #section__title__container--images1--flower3{
+        width: calc(280 * var(--responsive));
+    }
+    #section__title__container--images2{
+        /* background-color: #8E9291; */
+        /* width: 25vw; */
+    }
+    #section__title__container--images2--flower3{
+        width: calc(120 * var(--responsive));
+    }
+    #section__title__container--images2--flower2{
+        width: calc(230 * var(--responsive));
+    }
+    #section__title__container--images2--flower1{
+        width: calc(280 * var(--responsive));
+    }
+    h2{
+        padding: 20px 0px 0px;
+        margin: 0;
+    }
+    h2 span:first-of-type{
+        font-size: 10vw;
+    }
+    #h2__year{
+        padding: 10px 0px 0px 80px;
+        font-size: 5vw;
+    }
 }
 /* ! Calendar */
 #section__calendar{
@@ -156,12 +210,13 @@ h2 span{
     display: flex;
 }
 .days-name__blocks{
-    /* background-color: grey; */
+    /* background-color: red; */
     height: 100%;
     width: 13vw;
     display: flex;
     align-items: end;
     padding-left: 0.5vw;
+    font-size: 1vw;
 }
 .days__container{
     /* background-color: blue; */
@@ -169,7 +224,7 @@ h2 span{
     display: flex;
     flex-wrap: wrap;
 }
-.days__container--empty{
+.days__container--empty{ /* class appelée avec PHP */
     background-color: #8E9291;
     height: 100%;
     width: 100%;
@@ -184,4 +239,59 @@ h2 span{
     align-items: center;
     font-size: 1.2vw;
 }
+@media screen and (max-width : 1399px) {
+    #calendar__container{
+        height: 60vh;
+        width: 81vw;
+        padding-left: 150px;
+    }
+    .days__container{
+        /* background-color: blue; */
+        /* height: calc(100vh - 5vh);
+        width: 80vw; */
+        height: 55vh;
+    }
+    .days__blocks{
+        height: calc(55vh / 6) !important;
+        width: calc(80vw / 8) !important;
+    }
+    .days-name__blocks{
+        /* background-color: red; */
+        height: 100%;
+        width: calc(80vw / 8);
+        /* padding-left: 0.5vw; */
+        display: flex;
+        justify-content: start;
+    }
+}
 
+
+
+
+
+@media screen and (max-width : 430) {
+    #calendar__container{
+        height: 60vh;
+        width: 100vw;
+        padding-left: 0px !important;
+        background-color: red;
+    }
+    .days__container{
+        /* background-color: blue; */
+        /* height: calc(100vh - 5vh);
+        width: 80vw; */
+        height: 55vh;
+    }
+    .days__blocks{
+        height: calc(55vh / 6) !important;
+        width: calc(100 / 8) !important;
+    }
+    .days-name__blocks{
+        /* background-color: red; */
+        height: 100%;
+        width: calc(100vw / 8);
+        /* padding-left: 0.5vw; */
+        display: flex;
+        justify-content: start;
+    }
+}
