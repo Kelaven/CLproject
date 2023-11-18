@@ -46,6 +46,7 @@ input{
         display: flex;
         align-items: center;
         /* background-color: red; */
+        padding-top: 10px;
     }
     select{
         display: flex;
@@ -151,7 +152,7 @@ h2 span{
     #section__title{
         /* width: 95vw; */
         height: 8vh;
-        padding-top: 15px;
+        padding-top: 40px;
         /* background-color: red; */
         /* width: 100vw; */
     }
@@ -186,7 +187,7 @@ h2 span{
         margin: 0;
     }
     h2 span:first-of-type{
-        font-size: 10vw;
+        font-size: 15vw;
     }
     #h2__year{
         padding: 10px 0px 0px 80px;
@@ -265,6 +266,9 @@ h2 span{
     }
 }
 @media screen and (max-width : 430px) {
+    #section__calendar{
+        padding-top: 20px;
+    }
     #calendar__container{
         /* height: 10vh !important; */
         width: 100%;
